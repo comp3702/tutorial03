@@ -53,3 +53,31 @@ class TestGridWorld(unittest.TestCase):
         env = GridWorld((6, 5))
 
         self.assertEqual([LEFT, UP], env.actions())
+
+    def test_step_up(self):
+        env = GridWorld((8, 0))
+        env.step(UP)
+
+        self.assertEqual(7, env.current_row)
+        self.assertEqual(0, env.current_col)
+
+    def test_step_down(self):
+        env = GridWorld((7, 0))
+        env.step(DOWN)
+
+        self.assertEqual(8, env.current_row)
+        self.assertEqual(0, env.current_col)
+
+    def test_step_right(self):
+        env = GridWorld((8, 0))
+        env.step(RIGHT)
+
+        self.assertEqual(8, env.current_row)
+        self.assertEqual(1, env.current_col)
+
+    def test_step_left(self):
+        env = GridWorld((8, 1))
+        env.step(LEFT)
+
+        self.assertEqual(8, env.current_row)
+        self.assertEqual(0, env.current_col)

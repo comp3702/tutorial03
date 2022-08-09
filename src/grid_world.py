@@ -53,7 +53,7 @@ class GridWorld:
                 (1, 1, 1, 1, 1, 1, 1, 1, 1)
             )
 
-    def actions(self):
+    def actions(self) -> list[int]:
         actions = list[int]()
 
         if self.current_col > 0 and self.obstacles[self.current_row][self.current_col - 1] != 1:
@@ -66,3 +66,13 @@ class GridWorld:
             actions.append(DOWN)
 
         return actions
+
+    def step(self, action: int) -> None:
+        if action == UP:
+            self.current_row -= 1
+        elif action == DOWN:
+            self.current_row += 1
+        elif action == LEFT:
+            self.current_col -= 1
+        elif action == RIGHT:
+            self.current_col += 1
