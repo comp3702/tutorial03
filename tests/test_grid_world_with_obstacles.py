@@ -51,25 +51,25 @@ class TestGridWorldWithObstacles(unittest.TestCase):
 
     def test_step_up(self):
         env = GridWorldWithObstacles()
-        new_state, cost = env.step(UP, (8, 0))
+        new_state = env.step(UP, (8, 0))
 
         self.assertEqual((7, 0), new_state)
 
     def test_step_down(self):
         env = GridWorldWithObstacles()
-        new_state, cost = env.step(DOWN, (7, 0))
+        new_state = env.step(DOWN, (7, 0))
 
         self.assertEqual((8, 0), new_state)
 
     def test_step_right(self):
         env = GridWorldWithObstacles()
-        new_state, cost = env.step(RIGHT, (8, 0))
+        new_state = env.step(RIGHT, (8, 0))
 
         self.assertEqual((8, 1), new_state)
 
     def test_step_left(self):
         env = GridWorldWithObstacles()
-        new_state, cost = env.step(LEFT, (8, 1))
+        new_state = env.step(LEFT, (8, 1))
 
         self.assertEqual((8, 0), new_state)
 

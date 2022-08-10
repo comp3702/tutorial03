@@ -33,7 +33,17 @@ class TestBfs(unittest.TestCase):
         print(f"Actions took: {tuple(ACTIONS[action] for action in actions)}")
 
     def test_32a(self):
-        env = GridWorldWithCost()
+        env = GridWorldWithObstacles((
+            (0, 0, 0, 0, 0, 0, 0, 0, 0),
+            (0, 0, 0, 0, 0, 0, 0, 0, 0),
+            (0, 0, 0, 0, 0, 0, 0, 0, 0),
+            (0, 0, 0, 0, 0, 0, 0, 0, 0),
+            (0, 0, 0, 0, 0, 0, 0, 0, 0),
+            (0, 0, 0, 0, 0, 0, 0, 0, 0),
+            (0, 0, 0, 0, 0, 0, 0, 0, 0),
+            (0, 0, 0, 0, 0, 0, 0, 0, 0),
+            (0, 0, 0, 0, 0, 0, 0, 0, 0),
+        ))
         actions = breadth_first_search(env, (8, 0), (0, 8))
 
         self.assertEqual(16, len(actions))

@@ -23,8 +23,7 @@ class GridWorld(ABC):
     def actions(self, position: Tuple[int, int]) -> Tuple[int, ...]:
         pass
 
-    # return new_state and cost
-    def step(self, action: int, position: Tuple[int, int]) -> Tuple[Tuple[int, int], int]:
+    def step(self, action: int, position: Tuple[int, int]) -> Tuple[int, int]:
         current_row = position[0]
         current_col = position[1]
 
@@ -40,11 +39,11 @@ class GridWorld(ABC):
         if current_row < 0 or current_col < 0 or current_row > self.last_row or current_col > self.last_col:
             raise Exception(f"Fell off the grid! At position {current_row}x{current_col}")
 
-        return (current_row, current_col), 0
+        return current_row, current_col
 
 
 class GridWorldWithObstacles(GridWorld):
-    def __init__(self, obstacles: Optional[Tuple[Tuple]] = None):
+    def __init__(self, obstacles: Optional[Tuple[Tuple[int, ...], ...]] = None):
         super().__init__()
         if obstacles:
             self.obstacles = obstacles
@@ -120,7 +119,7 @@ class GridWorldWithCost(GridWorld):
         return tuple(actions)
 
     def step(self, action: int, position: Tuple[int, int]):
-        new_state, cost = super().step(action, position)
+        new_state = super().step(action, position)
         cost = self.costs[new_state[0]][new_state[1]]
 
         return new_state, cost
