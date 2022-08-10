@@ -20,12 +20,12 @@ class GridWorld(ABC):
         self.last_col = 0
 
     @abstractmethod
-    def actions(self, position: Tuple[int, int]) -> Tuple[int, ...]:
+    def actions(self, state: Tuple[int, int]) -> Tuple[int, ...]:
         pass
 
-    def step(self, action: int, position: Tuple[int, int]) -> Tuple[int, int]:
-        current_row = position[0]
-        current_col = position[1]
+    def step(self, action: int, state: Tuple[int, int]) -> Tuple[int, int]:
+        current_row = state[0]
+        current_col = state[1]
 
         if action == UP:
             current_row -= 1
@@ -62,9 +62,9 @@ class GridWorldWithObstacles(GridWorld):
         self.last_row = len(self.obstacles) - 1
         self.last_col = len(self.obstacles[0]) - 1
 
-    def actions(self, position: Tuple[int, int]) -> tuple[int, ...]:
-        current_row = position[0]
-        current_col = position[1]
+    def actions(self, state: Tuple[int, int]) -> Tuple[int, ...]:
+        current_row = state[0]
+        current_col = state[1]
 
         actions = list[int]()
 
@@ -101,9 +101,9 @@ class GridWorldWithCost(GridWorld):
         self.last_row = len(self.costs) - 1
         self.last_col = len(self.costs[0]) - 1
 
-    def actions(self, position: Tuple[int, int]) -> Tuple[int, ...]:
-        current_row = position[0]
-        current_col = position[1]
+    def actions(self, state: Tuple[int, int]) -> Tuple[int, ...]:
+        current_row = state[0]
+        current_col = state[1]
 
         actions = list[int]()
 
@@ -118,5 +118,5 @@ class GridWorldWithCost(GridWorld):
 
         return tuple(actions)
 
-    def cost(self, position: Tuple[int, int]):
-        return self.costs[position[0]][position[1]]
+    def cost(self, state: Tuple[int, int]):
+        return self.costs[state[0]][state[1]]
