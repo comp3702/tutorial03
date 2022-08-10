@@ -31,8 +31,8 @@ To update the file:
 However, the intended access is through the unit tests.
 
 ### Running Tests
-The tests are in [tests/](tests/) dir.
-There are sub-dirs for tests related to search and questions where each question has its own test case. 
+The tests are in [tests/](tests/) dir, split into
+sub-dirs for tests related to environments, search and tutorial sheet questions where each question has its own test case. 
 
 These can be run either individually or everything (for questions dir):
 
