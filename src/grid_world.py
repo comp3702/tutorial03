@@ -68,14 +68,14 @@ class GridWorldWithObstacles(GridWorld):
 
         actions = list[int]()
 
-        if current_row > 0 and self.obstacles[current_row - 1][current_col] != 1:
-            actions.append(UP)
-        if current_row < self.last_row and self.obstacles[current_row + 1][current_col] != 1:
-            actions.append(DOWN)
         if current_col > 0 and self.obstacles[current_row][current_col - 1] != 1:
             actions.append(LEFT)
         if current_col < self.last_col and self.obstacles[current_row][current_col + 1] != 1:
             actions.append(RIGHT)
+        if current_row > 0 and self.obstacles[current_row - 1][current_col] != 1:
+            actions.append(UP)
+        if current_row < self.last_row and self.obstacles[current_row + 1][current_col] != 1:
+            actions.append(DOWN)
 
         return tuple(actions)
 
@@ -107,19 +107,16 @@ class GridWorldWithCost(GridWorld):
 
         actions = list[int]()
 
-        if current_row > 0:
-            actions.append(UP)
-        if current_row < self.last_row:
-            actions.append(DOWN)
         if current_col > 0:
             actions.append(LEFT)
         if current_col < self.last_col:
             actions.append(RIGHT)
+        if current_row > 0:
+            actions.append(UP)
+        if current_row < self.last_row:
+            actions.append(DOWN)
 
         return tuple(actions)
 
-    def step(self, action: int, position: Tuple[int, int]):
-        new_state = super().step(action, position)
-        cost = self.costs[new_state[0]][new_state[1]]
-
-        return new_state, cost
+    def cost(self, position: Tuple[int, int]):
+        return self.costs[position[0]][position[1]]

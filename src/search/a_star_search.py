@@ -27,7 +27,8 @@ def a_star_search(env: GridWorldWithCost, start: Tuple[int, int], goal: Tuple[in
             return node.actions, node.cost
 
         for action in env.actions(node.state):
-            new_state, cost = env.step(action, node.state)
+            new_state = env.step(action, node.state)
+            cost = env.cost(new_state)
             new_cost = cost + node.cost
 
             if new_state not in visited.keys() or visited[new_state] > new_cost:

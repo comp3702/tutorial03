@@ -31,14 +31,18 @@ class TestGridWorldWithCost(unittest.TestCase):
         )
 
     def test_step_left(self):
-        new_state, cost = self.env.step(LEFT, (8, 1))
+        new_state = self.env.step(LEFT, (8, 1))
 
         self.assertEqual((8, 0), new_state)
-        self.assertEqual(1, cost)
 
     def test_step_right(self):
-        new_state, cost = self.env.step(RIGHT, (2, 3))
+        new_state = self.env.step(RIGHT, (2, 3))
 
         self.assertEqual((2, 4), new_state)
-        self.assertEqual(10, cost)
+
+    def test_cost1(self):
+        self.assertEqual(1, self.env.cost((8, 0)))
+
+    def test_cost10(self):
+        self.assertEqual(10, self.env.cost((2, 2)))
 
