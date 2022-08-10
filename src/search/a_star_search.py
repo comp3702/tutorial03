@@ -3,15 +3,15 @@ import time
 from typing import Tuple, List, Dict
 
 from src.grid_node import GridNodeWithCost
-from src.grid_world import GridWorldWithCost
+from src.grid_world import GridWorld, GridWorldWithCost
 
 
-def uniform_cost_search(env: GridWorldWithCost, start: Tuple[int, int], goal: Tuple[int, int]) -> (List[int], int):
+def a_star_search(env: GridWorldWithCost, start: Tuple[int, int], goal: Tuple[int, int], heuristics) -> Tuple[Tuple[int, ...], int]:
     t0 = time.time()
 
     visited: Dict[Tuple[int, int], int]= {}
 
-    heap = [GridNodeWithCost(start, (), 0)]
+    heap = [GridNodeWithCost(start, (), heuristics(env, start, goal))]
     heapq.heapify(heap)
 
     nodes_generated = 0
@@ -25,7 +25,7 @@ def uniform_cost_search(env: GridWorldWithCost, start: Tuple[int, int], goal: Tu
 
         for action in env.actions(node.state):
             new_state, cost = env.step(action, node.state)
-            new_cost = cost + node.cost
+            new_cost = cost + heuristics(env, new_state, goal) + node.cost
 
             if new_state not in visited.keys() or visited[new_state] > new_cost:
                 visited[new_state] = new_cost
