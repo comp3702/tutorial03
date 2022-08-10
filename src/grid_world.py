@@ -12,15 +12,9 @@ actions = {
     DOWN: 'D'
 }
 
+
 class GridWorld:
-    def __init__(self, start: Tuple[int, int] = (8, 0), goal: Tuple[int, int] = (0, 8),
-                 obstacles: Optional[Tuple[Tuple]] = None, costs: Optional[Tuple[Tuple]] = None):
-        self.start = start
-        self.goal = goal
-
-        self.current_row = start[0]
-        self.current_col = start[1]
-
+    def __init__(self, obstacles: Optional[Tuple[Tuple]] = None, costs: Optional[Tuple[Tuple]] = None):
         if obstacles:
             self.obstacles = obstacles
         else:
@@ -53,26 +47,34 @@ class GridWorld:
                 (1, 1, 1, 1, 1, 1, 1, 1, 1)
             )
 
-    def actions(self) -> list[int]:
+    def actions(self, position: Tuple[int, int]) -> list[int]:
+        current_row = position[0]
+        current_col = position[1]
+
         actions = list[int]()
 
-        if self.current_col > 0 and self.obstacles[self.current_row][self.current_col - 1] != 1:
+        if current_col > 0 and self.obstacles[current_row][current_col - 1] != 1:
             actions.append(LEFT)
-        if self.current_col < self.last_col and self.obstacles[self.current_row][self.current_col + 1] != 1:
+        if current_col < self.last_col and self.obstacles[current_row][current_col + 1] != 1:
             actions.append(RIGHT)
-        if self.current_row > 0 and self.obstacles[self.current_row - 1][self.current_col] != 1:
+        if current_row > 0 and self.obstacles[current_row - 1][current_col] != 1:
             actions.append(UP)
-        if self.current_row < self.last_row and self.obstacles[self.current_row + 1][self.current_col] != 1:
+        if current_row < self.last_row and self.obstacles[current_row + 1][current_col] != 1:
             actions.append(DOWN)
 
         return actions
 
-    def step(self, action: int) -> None:
+    def step(self, action: int, position: Tuple[int, int]) -> Tuple[int, int]:
+        current_row = position[0]
+        current_col = position[1]
+
         if action == UP:
-            self.current_row -= 1
+            current_row -= 1
         elif action == DOWN:
-            self.current_row += 1
+            current_row += 1
         elif action == LEFT:
-            self.current_col -= 1
+            current_col -= 1
         elif action == RIGHT:
-            self.current_col += 1
+            current_col += 1
+
+        return current_row, current_col

@@ -8,76 +8,69 @@ class TestGridWorld(unittest.TestCase):
         env = GridWorld()
         self.assertEqual(8, env.last_row)
         self.assertEqual(8, env.last_col)
-        self.assertEqual((0, 8), env.goal)
-        self.assertEqual((8, 0), env.start)
 
     def test_actions_bottom_left(self):
-        env = GridWorld((8, 0))
+        env = GridWorld()
 
-        self.assertEqual(8, env.current_row)
-        self.assertEqual(0, env.current_col)
-
-        self.assertEqual([RIGHT, UP], env.actions())
+        self.assertEqual([RIGHT, UP], env.actions((8, 0)))
 
     def test_actions_bottom_right(self):
-        env = GridWorld((8, 8))
+        env = GridWorld()
 
-        self.assertEqual([LEFT, UP], env.actions())
+        self.assertEqual([LEFT, UP], env.actions((8, 8)))
 
     def test_actions_top_right(self):
-        env = GridWorld((0, 8))
+        env = GridWorld()
 
-        self.assertEqual([LEFT, DOWN], env.actions())
+        self.assertEqual([LEFT, DOWN], env.actions((0, 8)))
 
     def test_actions_top_left(self):
-        env = GridWorld((0, 0))
+        env = GridWorld()
 
-        self.assertEqual([RIGHT, DOWN], env.actions())
+        self.assertEqual([RIGHT, DOWN], env.actions((0, 0)))
 
     def test_actions_obstacle_up(self):
-        env = GridWorld((8, 4))
+        env = GridWorld()
 
-        self.assertEqual([LEFT, RIGHT], env.actions())
+        self.assertEqual([LEFT, RIGHT], env.actions((8, 4)))
 
     def test_actions_obstacle_left(self):
-        env = GridWorld((3, 7))
+        env = GridWorld()
 
-        self.assertEqual([RIGHT, UP, DOWN], env.actions())
+        self.assertEqual([RIGHT, UP, DOWN], env.actions((3, 7)))
 
     def test_actions_obstacle_right(self):
-        env = GridWorld((4, 5))
+        env = GridWorld()
 
-        self.assertEqual([LEFT, UP, DOWN], env.actions())
+        self.assertEqual([LEFT, UP, DOWN], env.actions((4, 5)))
 
     def test_actions_obstacle_down_and_right(self):
-        env = GridWorld((6, 5))
+        env = GridWorld()
 
-        self.assertEqual([LEFT, UP], env.actions())
+        self.assertEqual([LEFT, UP], env.actions((6, 5)))
 
     def test_step_up(self):
-        env = GridWorld((8, 0))
-        env.step(UP)
+        env = GridWorld()
+        new_state = env.step(UP, (8, 0))
 
-        self.assertEqual(7, env.current_row)
-        self.assertEqual(0, env.current_col)
+        self.assertEqual((7, 0), new_state)
 
     def test_step_down(self):
-        env = GridWorld((7, 0))
-        env.step(DOWN)
+        env = GridWorld()
+        new_state = env.step(DOWN, (7, 0))
 
-        self.assertEqual(8, env.current_row)
-        self.assertEqual(0, env.current_col)
+        self.assertEqual((8, 0), new_state)
 
     def test_step_right(self):
-        env = GridWorld((8, 0))
-        env.step(RIGHT)
+        env = GridWorld()
+        new_state = env.step(RIGHT, (8, 0))
 
-        self.assertEqual(8, env.current_row)
-        self.assertEqual(1, env.current_col)
+        self.assertEqual((8, 1), new_state)
 
     def test_step_left(self):
-        env = GridWorld((8, 1))
-        env.step(LEFT)
+        env = GridWorld()
+        new_state = env.step(LEFT, (8, 1))
 
-        self.assertEqual(8, env.current_row)
-        self.assertEqual(0, env.current_col)
+        self.assertEqual((8, 0), new_state)
+
+
