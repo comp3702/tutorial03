@@ -4,8 +4,8 @@ Loosely based on official solutions that will be released later in the week.
 
 The main differences to the other solutions:
 
-1) It uses agent taking actions/steps in environment paradigm - rather than graph / node / children paradigm (similar to Nick's solution)
-2) Hides the Node implementation from the end user by accepting 2D arrays as initial and goal state
+1) It uses agent taking actions/steps in environment paradigm
+2) Hides the Node implementation from the end user
 3) Keeps the state as immutable tuple of tuples rather than lists
 4) Fixes naming conventions and caches some calculations to make the code more readable
 5) __There are unit tests__ - for everything
