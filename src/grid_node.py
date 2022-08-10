@@ -14,4 +14,9 @@ class GridNodeWithCost(GridNode):
         self.cost = cost
 
     def __lt__(self, other):
-        return self.cost < other.cost
+        # this makes the difference between the official results
+        # the return True which affects the sorting of the Heap
+        if self.cost != other.cost:
+            return self.cost < other.cost
+        else:
+            return self.actions[len(self.actions) - 1] < other.actions[len(other.actions) - 1]

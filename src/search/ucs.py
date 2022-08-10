@@ -9,18 +9,19 @@ from src.grid_world import GridWorldWithCost
 def uniform_cost_search(env: GridWorldWithCost, start: Tuple[int, int], goal: Tuple[int, int]) -> (List[int], int):
     t0 = time.time()
 
-    visited: Dict[Tuple[int, int], int]= {}
+    visited: Dict[Tuple[int, int], int]= {start: 0}
 
     heap = [GridNodeWithCost(start, (), 0)]
     heapq.heapify(heap)
 
-    nodes_generated = 0
+    nodes_expanded = 0
 
     while heap:
         node = heapq.heappop(heap)
 
         if node.state == goal:
-            print(f"Found the goal in {len(node.actions)} steps and {time.time() - t0}s. Visited {len(visited)} nodes and generated {nodes_generated}")
+            print(f"Found the goal in {len(node.actions)} steps and {time.time() - t0}s. Visited {len(visited)} nodes and expanded {nodes_expanded}")
+            print(f"Path cost {node.cost}")
             return node.actions, node.cost
 
         for action in env.actions(node.state):
@@ -31,4 +32,4 @@ def uniform_cost_search(env: GridWorldWithCost, start: Tuple[int, int], goal: Tu
                 visited[new_state] = new_cost
                 heapq.heappush(heap, GridNodeWithCost(new_state, node.actions + (action,), new_cost))
 
-                nodes_generated += 1
+        nodes_expanded += 1

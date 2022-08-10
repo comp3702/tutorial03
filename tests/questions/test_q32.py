@@ -32,6 +32,8 @@ class TestQ32(unittest.TestCase):
         self.assertEqual(16, len(actions))
         self.assertEqual(16, costs)
 
+        print(f"Actions took: {tuple(ACTIONS[action] for action in actions)}")
+
     def test_32d(self):
         env = GridWorldWithCost()
         distance = grid_world_manhattan_distance(env, (8, 0), (0, 8))

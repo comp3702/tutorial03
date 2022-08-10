@@ -15,12 +15,12 @@ def depth_limited_search(env: GridWorldWithObstacles, start: Tuple[int, int], go
     stack: Deque[GridNode] = deque()
     stack.append(GridNode(start, ()))
 
-    nodes_generated = 0
+    nodes_expanded = 0
 
     while stack:
         node = stack.pop()
         if node.state == goal:
-            print(f"Found the goal in {len(node.actions)} steps and {time.time() - t0}s. Visited {len(visited)} nodes and generated {nodes_generated}")
+            print(f"Found the goal in {len(node.actions)} steps and {time.time() - t0}s. Visited {len(visited)} nodes and generated {nodes_expanded}")
             return node.actions
 
         for action in env.actions(node.state):
@@ -28,7 +28,7 @@ def depth_limited_search(env: GridWorldWithObstacles, start: Tuple[int, int], go
             if (new_state not in visited.keys() or visited[new_state] > len(node.actions) + 1) and len(node.actions) + 1 < max_depth:
                 visited[new_state] = len(node.actions) + 1
                 stack.append(GridNode(new_state, node.actions + (action,)))
-                nodes_generated += 1
+        nodes_expanded += 1
 
     return None
 
