@@ -3,10 +3,10 @@ from queue import Queue
 from typing import Tuple
 
 from src.grid_node import GridNode
-from src.grid_world import GridWorld
+from src.grid_world import GridWorldWithObstacles
 
 
-def breadth_first_search(env: GridWorld, start: Tuple[int, int], goal: Tuple[int, int]) -> Tuple[int, ...]:
+def breadth_first_search(env: GridWorldWithObstacles, start: Tuple[int, int], goal: Tuple[int, int]) -> Tuple[int, ...]:
     t0 = time.time()
 
     visited = set[Tuple[int, int]]()

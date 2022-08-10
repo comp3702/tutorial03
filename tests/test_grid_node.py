@@ -1,6 +1,7 @@
 import unittest
 
 from src.grid_node import GridNode
+from src.grid_world import UP, DOWN, LEFT
 
 
 class TestGridNode(unittest.TestCase):

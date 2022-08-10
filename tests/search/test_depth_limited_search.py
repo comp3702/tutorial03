@@ -1,12 +1,12 @@
 import unittest
 
-from src.grid_world import GridWorld, UP, ACTIONS
+from src.grid_world import GridWorldWithObstacles, UP, ACTIONS
 from src.search.depth_limited_search import depth_limited_search, iterative_deepening_search
 
 
 class TestDepthLimitedSearch(unittest.TestCase):
     def test_2_steps_up(self):
-        env = GridWorld()
+        env = GridWorldWithObstacles()
         start = (8, 0)
         goal = (6, 0)
 
@@ -17,7 +17,7 @@ class TestDepthLimitedSearch(unittest.TestCase):
         self.assertEqual((UP, UP), actions)
 
     def test_step_up_over_the_limit(self):
-        env = GridWorld()
+        env = GridWorldWithObstacles()
         start = (8, 0)
         goal = (2, 0)
 
@@ -28,7 +28,7 @@ class TestDepthLimitedSearch(unittest.TestCase):
         self.assertEqual(None, actions)
 
     def test_step_up_over_the_limit_width_iddfs(self):
-        env = GridWorld()
+        env = GridWorldWithObstacles()
         start = (8, 0)
         goal = (2, 0)
 
@@ -37,7 +37,7 @@ class TestDepthLimitedSearch(unittest.TestCase):
         self.assertEqual(6, len(actions))
 
     def test_31c(self):
-        env = GridWorld()
+        env = GridWorldWithObstacles()
         start = (8, 0)
         goal = (0, 8)
 

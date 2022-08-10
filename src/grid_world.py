@@ -13,8 +13,8 @@ ACTIONS = {
 }
 
 
-class GridWorld:
-    def __init__(self, obstacles: Optional[Tuple[Tuple]] = None, costs: Optional[Tuple[Tuple]] = None):
+class GridWorldWithObstacles:
+    def __init__(self, obstacles: Optional[Tuple[Tuple]] = None):
         if obstacles:
             self.obstacles = obstacles
         else:
@@ -31,21 +31,6 @@ class GridWorld:
             )
         self.last_row = len(self.obstacles) - 1
         self.last_col = len(self.obstacles[0]) - 1
-
-        if costs:
-            self.costs = costs
-        else:
-            self.costs = (
-                (1, 1, 1, 5, 5, 5, 5, 1, 1),
-                (1, 1, 1, 5, 5, 5, 5, 1, 1),
-                (1, 1, 10, 10, 10, 10, 10, 1, 1),
-                (1, 1, 1, 10, 10, 10, 10, 1, 1),
-                (1, 1, 1, 1, 1, 10, 10, 1, 1),
-                (1, 1, 1, 1, 1, 10, 10, 1, 1),
-                (1, 1, 1, 1, 10, 10, 10, 1, 1),
-                (1, 1, 1, 10, 10, 10, 10, 1, 1),
-                (1, 1, 1, 1, 1, 1, 1, 1, 1)
-            )
 
     def actions(self, position: Tuple[int, int]) -> list[int]:
         current_row = position[0]

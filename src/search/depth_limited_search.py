@@ -3,10 +3,10 @@ from collections import deque
 from typing import Tuple, Set, Deque, Dict, Optional
 
 from src.grid_node import GridNode
-from src.grid_world import GridWorld
+from src.grid_world import GridWorldWithObstacles
 
 
-def depth_limited_search(env: GridWorld, start: Tuple[int, int], goal: Tuple[int, int], max_depth: int) -> Optional[Tuple[int, ...]]:
+def depth_limited_search(env: GridWorldWithObstacles, start: Tuple[int, int], goal: Tuple[int, int], max_depth: int) -> Optional[Tuple[int, ...]]:
     t0 = time.time()
 
     # to allow revisiting of nodes found with fewer steps
@@ -33,7 +33,7 @@ def depth_limited_search(env: GridWorld, start: Tuple[int, int], goal: Tuple[int
     return None
 
 
-def iterative_deepening_search(env: GridWorld, start: Tuple[int, int], goal: Tuple[int, int]) -> Tuple[int, ...]:
+def iterative_deepening_search(env: GridWorldWithObstacles, start: Tuple[int, int], goal: Tuple[int, int]) -> Tuple[int, ...]:
     for max_depth in range(1000):
         actions = depth_limited_search(env, start, goal, max_depth)
         if actions:

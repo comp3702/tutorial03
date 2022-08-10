@@ -1,12 +1,12 @@
 import unittest
 
-from src.grid_world import GridWorld, RIGHT, UP, ACTIONS
+from src.grid_world import GridWorldWithObstacles, RIGHT, UP, ACTIONS
 from src.search.bfs import breadth_first_search
 
 
 class TestBfs(unittest.TestCase):
     def test_2_steps_right(self):
-        env = GridWorld()
+        env = GridWorldWithObstacles()
         start = (8, 0)
         goal = (8, 2)
 
@@ -15,7 +15,7 @@ class TestBfs(unittest.TestCase):
         self.assertEqual((RIGHT, RIGHT), actions)
 
     def test_2_steps_up(self):
-        env = GridWorld()
+        env = GridWorldWithObstacles()
         start = (8, 0)
         goal = (6, 0)
 
@@ -24,7 +24,7 @@ class TestBfs(unittest.TestCase):
         self.assertEqual((UP, UP), actions)
 
     def test_31b(self):
-        env = GridWorld()
+        env = GridWorldWithObstacles()
         start = (8, 0)
         goal = (0, 8)
 
