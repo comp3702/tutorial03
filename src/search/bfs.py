@@ -14,11 +14,13 @@ def breadth_first_search(env: GridWorld, start: Tuple[int, int], goal: Tuple[int
     q: Queue[GridNode] = Queue()
     q.put(GridNode(start, ()))
 
+    nodes_generated = 0
+
     while not q.empty():
         node = q.get()
 
         if node.state == goal:
-            print(f"Found the goal in {len(node.actions)} steps and {time.time() - t0}s")
+            print(f"Found the goal in {len(node.actions)} steps and {time.time() - t0}s. Visited {len(visited)} nodes and generated {nodes_generated}")
             return node.actions
 
         for action in env.actions(node.state):
@@ -26,6 +28,7 @@ def breadth_first_search(env: GridWorld, start: Tuple[int, int], goal: Tuple[int
             if new_state not in visited:
                 visited.add(new_state)
                 q.put(GridNode(new_state, node.actions + (action,)))
+                nodes_generated += 1
 
     print(f"No solution found in {time.time() - t0}s!")
     return ()
