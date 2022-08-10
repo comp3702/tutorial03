@@ -39,4 +39,7 @@ These can be run either individually or everything (for questions dir):
     python -m unittest discover -s tests/questions -t tests/questions
 
 The easiest is probably using the IDE such as PyCharm (I am using professional version, but there is a community version as well):
-<a href="https://drive.google.com/file/d/19lTjYU7GBHJtXwr1gd1rknzzjRqftJNh/preview" target="_blank">running tests in IDE</a>
+
+<a href="https://drive.google.com/file/d/19lTjYU7GBHJtXwr1gd1rknzzjRqftJNh/preview" target="_blank">
+<img src="docs/running_tests.png">
+</a>
