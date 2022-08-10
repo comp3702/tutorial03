@@ -1,3 +1,4 @@
+from abc import abstractmethod, ABC
 from typing import Optional, Tuple
 
 LEFT = 0
@@ -13,8 +14,37 @@ ACTIONS = {
 }
 
 
-class GridWorldWithObstacles:
+class GridWorld(ABC):
+    def __init__(self):
+        self.last_row = 0
+        self.last_col = 0
+
+    @abstractmethod
+    def actions(self, position: Tuple[int, int]):
+        pass
+
+    def step(self, action: int, position: Tuple[int, int]) -> Tuple[int, int]:
+        current_row = position[0]
+        current_col = position[1]
+
+        if action == UP:
+            current_row -= 1
+        elif action == DOWN:
+            current_row += 1
+        elif action == LEFT:
+            current_col -= 1
+        elif action == RIGHT:
+            current_col += 1
+
+        if current_row < 0 or current_col < 0 or current_row > self.last_row or current_col > self.last_col:
+            raise Exception(f"Fell off the grid! At position {current_row}x{current_col}")
+
+        return current_row, current_col
+
+
+class GridWorldWithObstacles(GridWorld):
     def __init__(self, obstacles: Optional[Tuple[Tuple]] = None):
+        super().__init__()
         if obstacles:
             self.obstacles = obstacles
         else:
@@ -49,17 +79,3 @@ class GridWorldWithObstacles:
 
         return actions
 
-    def step(self, action: int, position: Tuple[int, int]) -> Tuple[int, int]:
-        current_row = position[0]
-        current_col = position[1]
-
-        if action == UP:
-            current_row -= 1
-        elif action == DOWN:
-            current_row += 1
-        elif action == LEFT:
-            current_col -= 1
-        elif action == RIGHT:
-            current_col += 1
-
-        return current_row, current_col
