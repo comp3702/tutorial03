@@ -35,12 +35,3 @@ class TestDepthLimitedSearch(unittest.TestCase):
         actions = iterative_deepening_search(env, start, goal)
         # None is the depth limit hit marker!
         self.assertEqual(6, len(actions))
-
-    def test_31c(self):
-        env = GridWorldWithObstacles()
-        start = (8, 0)
-        goal = (0, 8)
-
-        actions = iterative_deepening_search(env, start, goal)
-        self.assertEqual(16, len(actions))
-        print(f"Actions took: {tuple(ACTIONS[action] for action in actions)}")

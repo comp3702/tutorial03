@@ -23,29 +23,3 @@ class TestBfs(unittest.TestCase):
         actions = breadth_first_search(self.env, start, goal)
         self.assertEqual(2, len(actions))
         self.assertEqual((UP, UP), actions)
-
-    def test_31b(self):
-        start = (8, 0)
-        goal = (0, 8)
-
-        actions = breadth_first_search(self.env, start, goal)
-        self.assertEqual(16, len(actions))
-        print(f"Actions took: {tuple(ACTIONS[action] for action in actions)}")
-
-    def test_32a(self):
-        env = GridWorldWithObstacles((
-            (0, 0, 0, 0, 0, 0, 0, 0, 0),
-            (0, 0, 0, 0, 0, 0, 0, 0, 0),
-            (0, 0, 0, 0, 0, 0, 0, 0, 0),
-            (0, 0, 0, 0, 0, 0, 0, 0, 0),
-            (0, 0, 0, 0, 0, 0, 0, 0, 0),
-            (0, 0, 0, 0, 0, 0, 0, 0, 0),
-            (0, 0, 0, 0, 0, 0, 0, 0, 0),
-            (0, 0, 0, 0, 0, 0, 0, 0, 0),
-            (0, 0, 0, 0, 0, 0, 0, 0, 0),
-        ))
-        actions = breadth_first_search(env, (8, 0), (0, 8))
-
-        self.assertEqual(16, len(actions))
-        print(f"Actions took: {tuple(ACTIONS[action] for action in actions)}")
-

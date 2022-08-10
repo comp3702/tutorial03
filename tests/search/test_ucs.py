@@ -25,8 +25,3 @@ class TestUcs(unittest.TestCase):
         actions, costs = uniform_cost_search(self.env, (8, 0), (8, 1))
         self.assertEqual(1, len(actions))
         self.assertEqual(1, costs)
-
-    def test_32b(self):
-        actions, costs = uniform_cost_search(self.env, (8, 0), (0, 8))
-        self.assertEqual(16, len(actions))
-        self.assertEqual(16, costs)
