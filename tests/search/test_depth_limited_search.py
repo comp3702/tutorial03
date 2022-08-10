@@ -1,7 +1,7 @@
 import unittest
 
-from src.grid_world import GridWorld, UP
-from src.search.depth_limited_search import depth_limited_search
+from src.grid_world import GridWorld, UP, ACTIONS
+from src.search.depth_limited_search import depth_limited_search, iterative_deepening_search
 
 
 class TestDepthLimitedSearch(unittest.TestCase):
@@ -26,3 +26,21 @@ class TestDepthLimitedSearch(unittest.TestCase):
         actions = depth_limited_search(env, start, goal, limit)
         # None is the depth limit hit marker!
         self.assertEqual(None, actions)
+
+    def test_step_up_over_the_limit_width_iddfs(self):
+        env = GridWorld()
+        start = (8, 0)
+        goal = (2, 0)
+
+        actions = iterative_deepening_search(env, start, goal)
+        # None is the depth limit hit marker!
+        self.assertEqual(6, len(actions))
+
+    def test_31c(self):
+        env = GridWorld()
+        start = (8, 0)
+        goal = (0, 8)
+
+        actions = iterative_deepening_search(env, start, goal)
+        self.assertEqual(16, len(actions))
+        print(f"Actions took: {tuple(ACTIONS[action] for action in actions)}")
