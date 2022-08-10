@@ -3,7 +3,7 @@ import unittest
 from src.grid_world import GridWorldWithObstacles, LEFT, UP, RIGHT, DOWN
 
 
-class TestGridWorld(unittest.TestCase):
+class TestGridWorldWithObstacles(unittest.TestCase):
     def test_init(self):
         env = GridWorldWithObstacles()
         self.assertEqual(8, env.last_row)
