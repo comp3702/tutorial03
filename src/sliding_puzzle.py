@@ -19,9 +19,9 @@ class SlidingPuzzle(GridWorldWithCost):
         self.last_col = len(self.state[0]) - 1
 
     def find_blank(self, state: Tuple[Tuple[int, ...], ...]) -> Tuple[int, int]:
-        for index, row in enumerate(state):
+        for row_index, row in enumerate(state):
             if -1 in row:
-                return row.index(-1), index
+                return row_index, row.index(-1)
 
     def actions(self, state: Tuple[Tuple[int, ...], ...]) -> Tuple[int, ...]:
         blank_row, blank_col = self.find_blank(state)

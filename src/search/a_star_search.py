@@ -36,3 +36,6 @@ def a_star_search(env: GridWorldWithCost, start: Tuple[int, int], goal: Tuple[in
                 heapq.heappush(heap, (new_cost + heuristics(env, new_state, goal), GridNodeWithCost(new_state, node.actions + (action,), new_cost)))
 
         nodes_expanded += 1
+
+    print("Solution not found")
+    return (), 0
