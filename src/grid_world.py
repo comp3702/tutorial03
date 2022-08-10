@@ -20,7 +20,7 @@ class GridWorld(ABC):
         self.last_col = 0
 
     @abstractmethod
-    def actions(self, position: Tuple[int, int]):
+    def actions(self, position: Tuple[int, int]) -> Tuple[int, ...]:
         pass
 
     def step(self, action: int, position: Tuple[int, int]) -> Tuple[int, int]:
@@ -62,7 +62,7 @@ class GridWorldWithObstacles(GridWorld):
         self.last_row = len(self.obstacles) - 1
         self.last_col = len(self.obstacles[0]) - 1
 
-    def actions(self, position: Tuple[int, int]) -> list[int]:
+    def actions(self, position: Tuple[int, int]) -> tuple[int, ...]:
         current_row = position[0]
         current_col = position[1]
 
@@ -77,5 +77,49 @@ class GridWorldWithObstacles(GridWorld):
         if current_row < self.last_row and self.obstacles[current_row + 1][current_col] != 1:
             actions.append(DOWN)
 
-        return actions
+        return tuple(actions)
 
+class GridWorldWithCost(GridWorld):
+    def __init__(self, costs: Optional[Tuple[Tuple]] = None):
+        super().__init__()
+
+        if costs:
+            self.costs = costs
+        else:
+            self.costs = (
+                (1, 1, 1, 5, 5, 5, 5, 1, 1),
+                (1, 1, 1, 5, 5, 5, 5, 1, 1),
+                (1, 1, 10, 10, 10, 10, 10, 1, 1),
+                (1, 1, 1, 10, 10, 10, 10, 1, 1),
+                (1, 1, 1, 1, 1, 10, 10, 1, 1),
+                (1, 1, 1, 1, 1, 10, 10, 1, 1),
+                (1, 1, 1, 1, 10, 10, 10, 1, 1),
+                (1, 1, 1, 10, 10, 10, 10, 1, 1),
+                (1, 1, 1, 1, 1, 1, 1, 1, 1)
+            )
+
+        self.last_row = len(self.costs) - 1
+        self.last_col = len(self.costs[0]) - 1
+
+    def actions(self, position: Tuple[int, int]) -> Tuple[int, ...]:
+        current_row = position[0]
+        current_col = position[1]
+
+        actions = list[int]()
+
+        if current_col > 0:
+            actions.append(LEFT)
+        if current_col < self.last_col:
+            actions.append(RIGHT)
+        if current_row > 0:
+            actions.append(UP)
+        if current_row < self.last_row:
+            actions.append(DOWN)
+
+        return tuple(actions)
+
+    def step(self, action: int, position: Tuple[int, int]):
+        new_state = super().step(action, position)
+        cost = self.costs[new_state[0]][new_state[1]]
+
+        return new_state, cost

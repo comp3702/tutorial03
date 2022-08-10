@@ -12,42 +12,42 @@ class TestGridWorldWithObstacles(unittest.TestCase):
     def test_actions_bottom_left(self):
         env = GridWorldWithObstacles()
 
-        self.assertEqual([RIGHT, UP], env.actions((8, 0)))
+        self.assertEqual((RIGHT, UP), env.actions((8, 0)))
 
     def test_actions_bottom_right(self):
         env = GridWorldWithObstacles()
 
-        self.assertEqual([LEFT, UP], env.actions((8, 8)))
+        self.assertEqual((LEFT, UP), env.actions((8, 8)))
 
     def test_actions_top_right(self):
         env = GridWorldWithObstacles()
 
-        self.assertEqual([LEFT, DOWN], env.actions((0, 8)))
+        self.assertEqual((LEFT, DOWN), env.actions((0, 8)))
 
     def test_actions_top_left(self):
         env = GridWorldWithObstacles()
 
-        self.assertEqual([RIGHT, DOWN], env.actions((0, 0)))
+        self.assertEqual((RIGHT, DOWN), env.actions((0, 0)))
 
     def test_actions_obstacle_up(self):
         env = GridWorldWithObstacles()
 
-        self.assertEqual([LEFT, RIGHT], env.actions((8, 4)))
+        self.assertEqual((LEFT, RIGHT), env.actions((8, 4)))
 
     def test_actions_obstacle_left(self):
         env = GridWorldWithObstacles()
 
-        self.assertEqual([RIGHT, UP, DOWN], env.actions((3, 7)))
+        self.assertEqual((RIGHT, UP, DOWN), env.actions((3, 7)))
 
     def test_actions_obstacle_right(self):
         env = GridWorldWithObstacles()
 
-        self.assertEqual([LEFT, UP, DOWN], env.actions((4, 5)))
+        self.assertEqual((LEFT, UP, DOWN), env.actions((4, 5)))
 
     def test_actions_obstacle_down_and_right(self):
         env = GridWorldWithObstacles()
 
-        self.assertEqual([LEFT, UP], env.actions((6, 5)))
+        self.assertEqual((LEFT, UP), env.actions((6, 5)))
 
     def test_step_up(self):
         env = GridWorldWithObstacles()
