@@ -44,3 +44,4 @@ class TestQ33(unittest.TestCase):
 
         self.assertEqual(19, len(actions)) # same as BFS in tutorial 02
         print(f"Actions took: {tuple(ACTIONS[action] for action in actions)}")
+
