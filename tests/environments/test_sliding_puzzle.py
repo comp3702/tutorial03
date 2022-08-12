@@ -1,7 +1,7 @@
 import unittest
 
 from src.grid_world import LEFT, UP, RIGHT, DOWN
-from src.sliding_puzzle import SlidingPuzzle
+from src.sliding_puzzle import SlidingPuzzle, BLANK
 
 
 class TestSlidingPuzzle(unittest.TestCase):
@@ -11,7 +11,7 @@ class TestSlidingPuzzle(unittest.TestCase):
         self.bottom_left = (
             (1, 2, 3),
             (4, 5, 6),
-            (7, 8, -1)
+            (7, 8, BLANK)
         )
 
     def test_init(self):
@@ -32,7 +32,7 @@ class TestSlidingPuzzle(unittest.TestCase):
         self.assertEqual(
             (RIGHT, DOWN),
             self.env.actions((
-                (-1, 2, 3),
+                (BLANK, 2, 3),
                 (4, 5, 6),
                 (7, 8, 1)
             ))
@@ -44,7 +44,7 @@ class TestSlidingPuzzle(unittest.TestCase):
             self.env.actions(
                 (
                     (5, 2, 3),
-                    (4, -1, 6),
+                    (4, BLANK, 6),
                     (7, 8, 1)
                 ))
         )
@@ -52,13 +52,13 @@ class TestSlidingPuzzle(unittest.TestCase):
     def test_step_up(self):
         self.assertEqual(
             (
-                (5, -1, 3),
+                (5, BLANK, 3),
                 (4, 2, 6),
                 (7, 8, 1)
             ),
             self.env.step(UP, (
             (5, 2, 3),
-            (4, -1, 6),
+            (4, BLANK, 6),
             (7, 8, 1)
         ))
         )
@@ -66,14 +66,14 @@ class TestSlidingPuzzle(unittest.TestCase):
     def test_step_down(self):
         state = (
             (5, 2, 3),
-            (4, -1, 6),
+            (4, BLANK, 6),
             (7, 8, 1)
         )
         self.assertEqual(
             (
                 (5, 2, 3),
                 (4, 8, 6),
-                (7, -1, 1)
+                (7, BLANK, 1)
             ),
             self.env.step(DOWN, state)
         )
@@ -81,13 +81,13 @@ class TestSlidingPuzzle(unittest.TestCase):
     def test_step_left(self):
         state = (
             (5, 2, 3),
-            (4, -1, 6),
+            (4, BLANK, 6),
             (7, 8, 1)
         )
         self.assertEqual(
             (
                 (5, 2, 3),
-                (-1, 4, 6),
+                (BLANK, 4, 6),
                 (7, 8, 1)
             ),
             self.env.step(LEFT, state)
@@ -96,13 +96,13 @@ class TestSlidingPuzzle(unittest.TestCase):
     def test_step_right(self):
         state = (
             (5, 2, 3),
-            (4, -1, 6),
+            (4, BLANK, 6),
             (7, 8, 1)
         )
         self.assertEqual(
             (
                 (5, 2, 3),
-                (4, 6, -1),
+                (4, 6, BLANK),
                 (7, 8, 1)
             ),
             self.env.step(RIGHT, state)

@@ -2,6 +2,7 @@ from typing import Tuple, Optional
 
 from src.grid_world import GridWorldWithCost, DOWN, UP, RIGHT, LEFT
 
+BLANK = -1
 
 class SlidingPuzzle(GridWorldWithCost):
     def __init__(self, state: Optional[Tuple[Tuple[int, ...], ...]] = None):
@@ -13,7 +14,7 @@ class SlidingPuzzle(GridWorldWithCost):
             self.state = (
                 (7, 2, 4),
                 (5, 3, 6),
-                (8, -1, 1)
+                (8, BLANK, 1)
             )
         self.last_row = len(self.state) - 1
         self.last_col = len(self.state[0]) - 1
@@ -21,7 +22,7 @@ class SlidingPuzzle(GridWorldWithCost):
     def find_blank(self, state: Tuple[Tuple[int, ...], ...]) -> Tuple[int, int]:
         for row_index, row in enumerate(state):
             if -1 in row:
-                return row_index, row.index(-1)
+                return row_index, row.index(BLANK)
 
     def actions(self, state: Tuple[Tuple[int, ...], ...]) -> Tuple[int, ...]:
         blank_row, blank_col = self.find_blank(state)
@@ -52,16 +53,16 @@ class SlidingPuzzle(GridWorldWithCost):
 
         if action == UP:
             new_state[blank_row][blank_col] = new_state[blank_row - 1][blank_col]
-            new_state[blank_row - 1][blank_col] = -1
+            new_state[blank_row - 1][blank_col] = BLANK
         elif action == DOWN:
             new_state[blank_row][blank_col] = new_state[blank_row + 1][blank_col]
-            new_state[blank_row + 1][blank_col] = -1
+            new_state[blank_row + 1][blank_col] = BLANK
         elif action == LEFT:
             new_state[blank_row][blank_col] = new_state[blank_row][blank_col - 1]
-            new_state[blank_row][blank_col - 1] = -1
+            new_state[blank_row][blank_col - 1] = BLANK
         elif action == RIGHT:
             new_state[blank_row][blank_col] = new_state[blank_row][blank_col + 1]
-            new_state[blank_row][blank_col + 1] = -1
+            new_state[blank_row][blank_col + 1] = BLANK
 
         return tuple([tuple(row) for row in new_state])
 
