@@ -21,7 +21,7 @@ class SlidingPuzzle(GridWorldWithCost):
 
     def find_tile(self, state: Tuple[Tuple[int, ...], ...], tile: int = BLANK) -> Tuple[int, int]:
         for row_index, row in enumerate(state):
-            if -1 in row:
+            if tile in row:
                 return row_index, row.index(tile)
 
     def actions(self, state: Tuple[Tuple[int, ...], ...]) -> Tuple[int, ...]:
