@@ -19,8 +19,8 @@ class TestSlidingPuzzle(unittest.TestCase):
         self.assertEqual(2, env.last_row)
         self.assertEqual(2, env.last_col)
 
-    def test_find_blank(self):
-        self.assertEqual((2, 2), self.env.find_blank(self.bottom_left))
+    def test_find_tile(self):
+        self.assertEqual((2, 2), self.env.find_tile(self.bottom_left, BLANK))
 
     def test_find_actions_bottom_right(self):
         self.assertEqual(

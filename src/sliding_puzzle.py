@@ -19,13 +19,13 @@ class SlidingPuzzle(GridWorldWithCost):
         self.last_row = len(self.state) - 1
         self.last_col = len(self.state[0]) - 1
 
-    def find_blank(self, state: Tuple[Tuple[int, ...], ...]) -> Tuple[int, int]:
+    def find_tile(self, state: Tuple[Tuple[int, ...], ...], tile: int = BLANK) -> Tuple[int, int]:
         for row_index, row in enumerate(state):
             if -1 in row:
-                return row_index, row.index(BLANK)
+                return row_index, row.index(tile)
 
     def actions(self, state: Tuple[Tuple[int, ...], ...]) -> Tuple[int, ...]:
-        blank_row, blank_col = self.find_blank(state)
+        blank_row, blank_col = self.find_tile(state, BLANK)
 
         actions = list[int]()
 
@@ -43,7 +43,7 @@ class SlidingPuzzle(GridWorldWithCost):
     def step(self, action: int, state: Tuple[Tuple[int, ...], ...]) -> Tuple[Tuple[int, ...], ...]:
         new_state = list(list(row) for row in state)
 
-        blank_row, blank_col = self.find_blank(state)
+        blank_row, blank_col = self.find_tile(state, BLANK)
 
         if blank_row == 0 and action == UP \
             or blank_row == self.last_row and action == DOWN \
