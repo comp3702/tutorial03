@@ -118,5 +118,5 @@ class GridWorldWithCost(GridWorld):
 
         return tuple(actions)
 
-    def cost(self, state: Tuple[int, int]):
+    def cost(self, state: Tuple[int, int]) -> int:
         return self.costs[state[0]][state[1]]
