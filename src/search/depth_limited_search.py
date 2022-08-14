@@ -20,7 +20,7 @@ def depth_limited_search(env: GridWorldWithObstacles, start: Tuple[int, int], go
     while stack:
         node = stack.pop()
         if node.state == goal:
-            print(f"Found the goal in {len(node.actions)} steps and {time.time() - t0}s. Visited {len(visited)} nodes and generated {nodes_expanded}")
+            print(f"Found the goal in {len(node.actions)} steps and {time.time() - t0}s. Visited {len(visited)} nodes, generated {nodes_expanded} and nodes on the stack {len(stack)}")
             return node.actions
 
         for action in env.actions(node.state):

@@ -20,7 +20,7 @@ def uniform_cost_search(env: GridWorldWithCost, start: Tuple[int, int], goal: Tu
         node = heapq.heappop(heap)
 
         if node.state == goal:
-            print(f"Found the goal in {len(node.actions)} steps and {time.time() - t0}s. Visited {len(visited)} nodes and expanded {nodes_expanded}")
+            print(f"Found the goal in {len(node.actions)} steps and {time.time() - t0}s. Visited {len(visited)} nodes and expanded {nodes_expanded}, nodes in the heap {len(heap)}")
             print(f"Path cost {node.cost}")
             return node.actions, node.cost
 

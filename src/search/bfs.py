@@ -20,7 +20,7 @@ def breadth_first_search(env: GridWorldWithObstacles, start: Tuple[int, int], go
         node = q.get()
 
         if node.state == goal:
-            print(f"Found the goal in {len(node.actions)} steps and {time.time() - t0}s. Visited {len(visited)} nodes and generated {nodes_expanded}")
+            print(f"Found the goal in {len(node.actions)} steps and {time.time() - t0}s. Visited {len(visited)} nodes and generated {nodes_expanded}, nodes in the queue {q.qsize()}")
             return node.actions
 
         for action in env.actions(node.state):
