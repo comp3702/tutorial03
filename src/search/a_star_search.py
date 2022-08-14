@@ -1,9 +1,9 @@
 import heapq
 import time
-from typing import Tuple, List, Dict
+from typing import Tuple, Dict
 
 from src.grid_node import GridNodeWithCost
-from src.grid_world import GridWorld, GridWorldWithCost
+from src.grid_world import GridWorldWithCost
 
 
 def a_star_search(env: GridWorldWithCost, start: Tuple[int, int], goal: Tuple[int, int], heuristics) -> Tuple[Tuple[int, ...], int]:
