@@ -13,7 +13,10 @@ def a_star_search(env: GridWorldWithCost, start: Tuple[int, int], goal: Tuple[in
 
     # the heap is sorted by current cost with heuristics
     # but the node only keeps the actual cost incurred
-    heap = [(heuristics(env, start, goal), GridNodeWithCost(start, (), 0))]
+    heap = [(
+        0 + 0 + heuristics(env, start, goal),
+        GridNodeWithCost(start, (), 0)
+    )]
     heapq.heapify(heap)
 
     nodes_expanded = 0
@@ -33,7 +36,10 @@ def a_star_search(env: GridWorldWithCost, start: Tuple[int, int], goal: Tuple[in
 
             if new_state not in visited.keys() or visited[new_state] > new_cost:
                 visited[new_state] = new_cost
-                heapq.heappush(heap, (new_cost + heuristics(env, new_state, goal), GridNodeWithCost(new_state, node.actions + (action,), new_cost)))
+                heapq.heappush(heap, (
+                    new_cost + heuristics(env, new_state, goal),
+                    GridNodeWithCost(new_state, node.actions + (action,), new_cost)
+                ))
 
         nodes_expanded += 1
 

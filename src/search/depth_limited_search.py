@@ -25,7 +25,8 @@ def depth_limited_search(env: GridWorldWithObstacles, start: Tuple[int, int], go
 
         for action in env.actions(node.state):
             new_state = env.step(action, node.state)
-            if (new_state not in visited.keys() or visited[new_state] > len(node.actions) + 1) and len(node.actions) + 1 < max_depth:
+            if (new_state not in visited.keys() or visited[new_state] > len(node.actions) + 1) and \
+                    len(node.actions) + 1 < max_depth:
                 visited[new_state] = len(node.actions) + 1
                 stack.append(GridNode(new_state, node.actions + (action,)))
         nodes_expanded += 1
