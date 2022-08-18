@@ -9,6 +9,7 @@ The main differences to the other solutions:
 3) Keeps the state as immutable tuple of tuples rather than lists
 4) Fixes naming conventions and caches some calculations to make the code more readable
 5) __There are unit tests__ - for everything
+6) __Doesn't use the butt-ugly hack involving tuples for heap sorting__
 
 ### Dependencies
 I used Python 3.10 (because of the match/case - but I removed it later), but it should work with any 3.x.
