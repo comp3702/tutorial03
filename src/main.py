@@ -15,6 +15,8 @@ if __name__ == '__main__':
 
     print(f"Actions took: {tuple(ACTIONS[action] for action in actions)}")
 
+    print("\n\n\n!!!Going to start a 15-puzzle - this may take a long time...")
+
     # bonus question - 15-puzzle
     init_state = (
         (9, 2, 1, 4),
