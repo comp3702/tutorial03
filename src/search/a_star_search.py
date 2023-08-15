@@ -37,6 +37,8 @@ def a_star_search(env: GridWorldWithCost, start: Tuple[int, int], goal: Tuple[in
 
             if new_state not in visited.keys() or visited[new_state] > new_cost:
                 visited[new_state] = new_cost
+                if len(visited) % 100000 == 0:
+                    print(f'Visited {len(visited)} states')
                 heapq.heappush(heap,
                                GridNodeWithCost(new_state, node.actions + (action,),
                                                 new_cost, heuristics(env, new_state, goal))

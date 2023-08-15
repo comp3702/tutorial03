@@ -15,7 +15,7 @@ if __name__ == '__main__':
 
     print(f"Actions took: {tuple(ACTIONS[action] for action in actions)}")
 
-    print("\n\n\n!!!Going to start a 15-puzzle - this may take a long time...")
+    print("\n\n\n!!!Going to start a 15-puzzle with Manhattan distance - this may take a long time...")
 
     # bonus question - 15-puzzle
     init_state = (
@@ -33,4 +33,8 @@ if __name__ == '__main__':
     puzzle15 = SlidingPuzzle(init_state)
 
     actions, cost = a_star_search(puzzle15, init_state, goal_state, manhattan_distance_heuristics)
+    print(f"Actions took: {tuple(ACTIONS[action] for action in actions)}")
+
+    print("\n\n\n!!!Going to start a 15-puzzle with mismatches heuristics - this may take a long time - kill it before you run out of memory...")
+    actions, cost = a_star_search(puzzle15, init_state, goal_state, mismatches_heuristics)
     print(f"Actions took: {tuple(ACTIONS[action] for action in actions)}")

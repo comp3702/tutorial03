@@ -46,3 +46,5 @@ class TestGridWorldWithCost(unittest.TestCase):
     def test_cost10(self):
         self.assertEqual(10, self.env.cost((2, 2)))
 
+if __name__ == '__main__':
+    unittest.main()

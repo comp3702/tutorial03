@@ -9,3 +9,6 @@ class TestGridNode(unittest.TestCase):
         node = GridNode((8, 0), (UP, DOWN, LEFT))
         self.assertEqual((8, 0), node.state)
         self.assertEqual((UP, DOWN, LEFT), node.actions)
+
+if __name__ == '__main__':
+    unittest.main()
